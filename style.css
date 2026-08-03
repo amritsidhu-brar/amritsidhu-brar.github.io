@@ -1,7 +1,40 @@
 /* ---------------------------------------------------------------
    amritsidhubrar.me.uk
    All the knobs worth turning live in :root — change them here.
+
+   Typeface and link colour deliberately match The Heart-Shaped Grape:
+   Spectral for body, Lora 600 for headings, #38ba13 for links.
+   Both fonts are SIL Open Font Licence, self-hosted from /fonts.
    --------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/spectral-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/spectral-400i.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/spectral-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/lora-600.woff2') format('woff2');
+}
 
 :root {
   /* Colour */
@@ -9,18 +42,19 @@
   --bg-soft:     #f4f1ec;
   --text:        #23201c;
   --text-muted:  #6b645c;
-  --accent:      #2f6b4f;
-  --accent-hover:#1f4b37;
+  --accent:      #38ba13;   /* Substack accent, exact match */
+  --accent-hover:#31a311;   /* Substack's own darkened variant */
   --rule:        #e2ddd4;
 
   /* Type */
-  --font-body:  Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
-  --font-ui:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --size-base:  1.0625rem;
-  --leading:    1.7;
+  --font-body:    'Spectral', Georgia, "Iowan Old Style", serif;
+  --font-heading: 'Lora', Georgia, serif;
+  --font-ui:      'Spectral', Georgia, serif;
+  --size-base:    1.125rem;
+  --leading:      1.7;
 
   /* Layout */
-  --measure:    38rem;   /* comfortable reading width */
+  --measure:    49rem;   /* comfortable reading width */
   --gutter:     1.5rem;
 }
 
@@ -30,8 +64,8 @@
     --bg-soft:     #212326;
     --text:        #e6e3dd;
     --text-muted:  #a19b92;
-    --accent:      #7fc0a0;
-    --accent-hover:#a3d6bb;
+    --accent:      #4ec722;
+    --accent-hover:#6bd845;
     --rule:        #32353a;
   }
 }
@@ -72,8 +106,9 @@ body {
 
 .site-title {
   margin: 0 0 0.9rem;
+  font-family: var(--font-heading);
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
@@ -125,25 +160,29 @@ body {
 
 main { padding-bottom: 1rem; }
 
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
 h1 {
   font-size: 2rem;
-  font-weight: 400;
   line-height: 1.25;
   letter-spacing: -0.015em;
   margin: 0 0 1.5rem;
 }
 
 h2 {
-  font-size: 1.3rem;
-  font-weight: 400;
+  font-size: 1.4rem;
   margin: 2.75rem 0 0.85rem;
 }
 
 h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.2rem;
   margin: 2.25rem 0 0.6rem;
 }
+
+strong, b { font-weight: 600; }
 
 p { margin: 0 0 1.15rem; }
 
