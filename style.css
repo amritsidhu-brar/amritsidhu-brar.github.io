@@ -1,0 +1,258 @@
+/* ---------------------------------------------------------------
+   amritsidhubrar.me.uk
+   All the knobs worth turning live in :root — change them here.
+   --------------------------------------------------------------- */
+
+:root {
+  /* Colour */
+  --bg:          #fdfcfa;
+  --bg-soft:     #f4f1ec;
+  --text:        #23201c;
+  --text-muted:  #6b645c;
+  --accent:      #2f6b4f;
+  --accent-hover:#1f4b37;
+  --rule:        #e2ddd4;
+
+  /* Type */
+  --font-body:  Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --font-ui:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --size-base:  1.0625rem;
+  --leading:    1.7;
+
+  /* Layout */
+  --measure:    38rem;   /* comfortable reading width */
+  --gutter:     1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #17181a;
+    --bg-soft:     #212326;
+    --text:        #e6e3dd;
+    --text-muted:  #a19b92;
+    --accent:      #7fc0a0;
+    --accent-hover:#a3d6bb;
+    --rule:        #32353a;
+  }
+}
+
+/* --------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--size-base);
+  line-height: var(--leading);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* --- Header ----------------------------------------------------- */
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  padding: 2.5rem 0 1.25rem;
+  margin-bottom: 2.75rem;
+}
+
+.site-title {
+  margin: 0 0 0.9rem;
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.site-title a {
+  color: var(--text);
+  text-decoration: none;
+  background: none;
+}
+
+.site-title a:hover { color: var(--accent); }
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.15rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+}
+
+.site-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  background: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.site-nav a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/* Little arrow on links that leave the site */
+.site-nav a[rel~="external"]::after {
+  content: " \2197";
+  font-size: 0.8em;
+  opacity: 0.55;
+}
+
+/* --- Content ---------------------------------------------------- */
+
+main { padding-bottom: 1rem; }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 2.75rem 0 0.85rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2.25rem 0 0.6rem;
+}
+
+p { margin: 0 0 1.15rem; }
+
+ul, ol {
+  margin: 0 0 1.15rem;
+  padding-left: 1.3rem;
+}
+
+li { margin-bottom: 0.6rem; }
+
+li > ul { margin-top: 0.6rem; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: color 0.12s ease, background-size 0.12s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  background-image: linear-gradient(var(--accent-hover), var(--accent-hover));
+  background-size: 100% 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+em { color: var(--text-muted); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+/* Intro paragraph, sits under an h1 */
+.lede {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin-bottom: 1.6rem;
+}
+
+/* --- Images ----------------------------------------------------- */
+
+img { max-width: 100%; height: auto; }
+
+.portrait {
+  float: right;
+  width: 200px;
+  margin: 0.35rem 0 1.25rem 1.75rem;
+  border-radius: 3px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 2.5rem 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+/* --- Footer ----------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 4rem;
+  padding: 1.5rem 0 3rem;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.site-footer p { margin: 0; }
+
+/* --- Small screens ---------------------------------------------- */
+
+@media (max-width: 34rem) {
+  :root { --gutter: 1.25rem; }
+
+  .site-header { padding-top: 1.75rem; margin-bottom: 2rem; }
+  .site-title  { font-size: 1.5rem; }
+  h1 { font-size: 1.6rem; }
+
+  .portrait {
+    float: none;
+    display: block;
+    width: 165px;
+    margin: 0 0 1.5rem;
+  }
+
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
