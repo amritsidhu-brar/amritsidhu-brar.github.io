@@ -188,25 +188,48 @@
 .ft-player-rowplay svg { width: 6px; height: 7px; }
 
 /* ------------------------------------------------------- parody asterisk */
-/* An asterisk set tight against the wordmark, in the wordmark's own colour, so
-   it reads as part of it -- the way linguists mark an unattested form. Hovering
-   anywhere over the logo explains it. */
+/* An asterisk in the gap between the mark and the lettering, in the wordmark's
+   own colour -- where linguists put it, before an unattested form. The logo is
+   a single SVG with both halves merged, so the same file is drawn twice and
+   clipped either side of the gap. Hovering anywhere over the logo explains it. */
 
 .ft-logo {
   position: relative;
-  display: inline-flex;
-  align-items: flex-start;
+  display: inline-block;
   cursor: help;
 }
-.ft-logo > a { display: block; }
+.ft-logo > a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ft-logo img {
+  display: block;
+  width: var(--logo-w);
+  max-width: none;
+  height: auto;
+}
+
+.ft-logo-mark,
+.ft-logo-word {
+  display: block;
+  overflow: hidden;
+  flex: none;
+}
+/* mark: x 0 -> 73.6 of a 762.33-wide viewBox */
+.ft-logo-mark { width: calc(var(--logo-w) * 0.09655); }
+/* lettering: x 102.3 -> 762.33, pulled back into view */
+.ft-logo-word { width: calc(var(--logo-w) * 0.86580); }
+.ft-logo-word img { margin-left: calc(var(--logo-w) * -0.13420); }
 
 .ft-star {
+  flex: none;
   font-family: var(--font-serif);
   line-height: 1;
   color: var(--color-ft-charcoal);
-  margin-left: 1px;
-  /* the glyph sits high in its em box; nudge it down onto the wordmark */
-  margin-top: -0.06em;
+  margin: 0 calc(var(--logo-w) * 0.012);
+  /* the glyph sits high in its em box; drop it onto the lettering's cap line */
+  margin-top: 0.30em;
   user-select: none;
 }
 
