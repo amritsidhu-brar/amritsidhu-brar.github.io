@@ -188,46 +188,55 @@
 .ft-player-rowplay svg { width: 6px; height: 7px; }
 
 /* ------------------------------------------------------- parody asterisk */
-/* Small marker beside the wordmark. Reveals the disclaimer on hover or
-   keyboard focus, so a suspicious reader can confirm what they are looking at
-   without the joke announcing itself. */
+/* An asterisk set tight against the wordmark, in the wordmark's own colour, so
+   it reads as part of it -- the way linguists mark an unattested form. Hovering
+   anywhere over the logo explains it. */
+
+.ft-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  cursor: help;
+}
+.ft-logo > a { display: block; }
 
 .ft-star {
-  position: relative;
-  display: inline-block;
-  margin-left: 3px;
-  font-family: var(--font-sans);
-  font-size: 15px;
+  font-family: var(--font-serif);
   line-height: 1;
-  color: var(--color-ft-grey);
-  cursor: help;
-  transition: color .2s ease;
+  color: var(--color-ft-charcoal);
+  margin-left: 1px;
+  /* the glyph sits high in its em box; nudge it down onto the wordmark */
+  margin-top: -0.06em;
+  user-select: none;
 }
-.ft-star:hover,
-.ft-star:focus-visible { color: var(--color-ft-orange); outline: none; }
 
 .ft-star-tip {
   position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-3px);
+  top: calc(100% + 6px);
+  left: 0;
   width: max-content;
-  max-width: 240px;
+  max-width: 260px;
   padding: 7px 10px;
   background: var(--color-ft-charcoal);
   color: var(--color-ft-white);
+  font-family: var(--font-sans);
   font-size: 13px;
+  font-weight: 400;
   line-height: 1.35;
   border-radius: 3px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transform: translateY(-3px);
   z-index: 40;
   transition: opacity .2s ease, transform .2s ease, visibility .2s;
 }
-.ft-star:hover .ft-star-tip,
-.ft-star:focus-visible .ft-star-tip {
+
+.ft-logo:hover .ft-star-tip,
+.ft-logo:focus-visible .ft-star-tip,
+.ft-logo:focus-within .ft-star-tip {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
 }
+.ft-logo:focus-visible { outline: none; }
