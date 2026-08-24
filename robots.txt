@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Parody page, deliberately not indexed. Not affiliated with Forethought Research.
+Disallow: /forethought-linguistics/
+
 Sitemap: https://amritsidhubrar.me.uk/sitemap.xml

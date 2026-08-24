@@ -1,0 +1,233 @@
+/* Utilities used by this build that are not in Forethought's compiled Tailwind
+   bundle (their build only ships the classes the live site actually uses).
+   Written as attribute selectors so the bracketed Tailwind names need no
+   backslash escaping. Loaded after site.css. */
+
+[class~="gap-[6px]"]       { gap: 6px; }
+[class~="gap-[16px]"]      { gap: 16px; }
+[class~="grid-cols-2"]     { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+[class~="h-[64px]"]        { height: 64px; }
+[class~="w-[64px]"]        { width: 64px; }
+[class~="min-h-[64px]"]    { min-height: 64px; }
+[class~="min-w-[64px]"]    { min-width: 64px; }
+[class~="min-h-[40px]"]    { min-height: 40px; }
+[class~="list-none"]       { list-style-type: none; }
+[class~="max-h-[70vh]"]    { max-height: 70vh; }
+[class~="max-w-[520px]"]   { max-width: 520px; }
+[class~="mb-[6px]"]        { margin-bottom: 6px; }
+[class~="mb-[12px]"]       { margin-bottom: 12px; }
+[class~="mb-[16px]"]       { margin-bottom: 16px; }
+[class~="mb-[24px]"]       { margin-bottom: 24px; }
+[class~="mt-[8px]"]        { margin-top: 8px; }
+[class~="mt-[60px]"]       { margin-top: 60px; }
+[class~="my-[24px]"]       { margin-block: 24px; }
+[class~="my-[32px]"]       { margin-block: 32px; }
+[class~="no-underline"]    { text-decoration-line: none; }
+[class~="text-[13px]"]     { font-size: 13px; }
+[class~="text-[14px]"]     { font-size: 14px; }
+[class~="border-l-[2px]"]  { border-left-width: 2px; border-left-style: solid; }
+
+@media (min-width: 48rem) {
+  [class~="md:grid-cols-3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------------------------------------------------------------- sidenotes */
+/* Margin notes in the right-hand column, matching the live site: faded and
+   clamped until hovered or opened. See assets/sidenotes.js. */
+
+.ft-sidenote {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 1rem 0 1rem 16px;
+  overflow: hidden;
+  background: var(--color-ft-offwhite);
+  transition: max-height .5s var(--ease-out-quart, cubic-bezier(.25, 1, .5, 1)),
+              opacity .5s var(--ease-out-quart, cubic-bezier(.25, 1, .5, 1));
+}
+
+.ft-sidenote-num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 1.25rem;
+  opacity: .3;
+  transition: opacity .5s ease;
+}
+
+.ft-sidenote-body { opacity: .3; transition: opacity .5s ease; }
+.ft-sidenote-body p:last-child,
+.ft-sidenote-body div:last-child { margin-bottom: 0; }
+
+/* The note text is cloned from the printed footnote list, where the item is
+   nudged 8px clear of its number. In the margin there is no marker to clear,
+   and the nudge would push the text past the column edge. */
+.ft-sidenote-body > * { left: 0; line-height: 140%; }
+
+.ft-sidenote:hover,
+.ft-sidenote.is-open {
+  max-height: none !important;
+  height: auto !important;
+  z-index: 5;
+}
+
+.ft-sidenote:hover .ft-sidenote-body,
+.ft-sidenote:hover .ft-sidenote-num,
+.ft-sidenote.is-open .ft-sidenote-body,
+.ft-sidenote.is-open .ft-sidenote-num { opacity: 1; }
+
+/* Above the article-tablet breakpoint the margin notes are the footnotes, so
+   the printed list at the foot of the article is redundant. Below it the
+   column is hidden and the list is the only way to read them. */
+@media (min-width: 1280px) {
+  #article > .footnotes { display: none; }
+}
+
+@media (min-width: 96rem) {
+  [class~="2xl:gap-x-[100px]"] { column-gap: 100px; }
+}
+
+/* ------------------------------------------------------------ podcast player */
+/* Static replica of the Pinecast playlist widget the live site embeds, using
+   the same colours it is configured with (primary/secondary #eeece4, accent
+   #ff6f43). Non-interactive: the controls are decoration, the titles link out. */
+
+.ft-player {
+  background: #eeece4;
+  border: 1px solid #dedbd0;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  color: #2f2a26;
+  overflow: hidden;
+}
+
+.ft-player-head { display: flex; gap: 14px; padding: 12px; align-items: flex-start; }
+
+.ft-player-cover {
+  width: 88px; height: 88px; flex: 0 0 88px;
+  object-fit: cover; border-radius: 2px; display: block;
+}
+
+.ft-player-main { flex: 1 1 auto; min-width: 0; }
+
+.ft-player-show {
+  font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+  color: #6d6a63; margin-bottom: 2px;
+}
+
+.ft-player-title {
+  font-size: 19px; line-height: 1.25; color: #2f2a26; margin-bottom: 12px;
+  overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+
+.ft-player-controls { display: flex; align-items: center; gap: 8px; }
+
+.ft-player-play {
+  width: 30px; height: 20px; flex: 0 0 30px;
+  background: #ff6f43; border: 0; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: #17140f; cursor: default;
+}
+.ft-player-play svg { width: 9px; height: 11px; }
+
+.ft-player-track { flex: 1 1 auto; height: 4px; background: #dcd9cf; border-radius: 2px; position: relative; }
+.ft-player-voltrack { flex: 0 0 46px; height: 4px; background: #dcd9cf; border-radius: 2px; position: relative; }
+
+.ft-player-knob {
+  position: absolute; left: 0; top: 50%; transform: translate(-2px, -50%);
+  width: 13px; height: 13px; border-radius: 50%;
+  background: #fff; border: 1px solid #c9c5b8;
+}
+.ft-player-voltrack .ft-player-knob { left: 100%; transform: translate(-11px, -50%); }
+
+.ft-player-speaker { flex: 0 0 14px; color: #2f2a26; }
+.ft-player-speaker svg { width: 14px; height: 12px; display: block; }
+
+.ft-player-meta {
+  display: flex; align-items: center; gap: 9px;
+  margin-top: 10px; font-size: 12px; color: #2f2a26;
+}
+.ft-player-icon { width: 12px; height: 12px; color: #2f2a26; }
+.ft-player-icon svg { width: 12px; height: 12px; display: block; }
+.ft-player-funnel { margin-left: auto; color: #6d6a63; }
+
+.ft-player-speed {
+  border: 1px solid #c9c5b8; background: #f6f4ee; border-radius: 3px;
+  padding: 1px 5px; font-size: 11px; color: #8a5a3c;
+}
+.ft-player-caret { color: #6d6a63; font-size: 9px; }
+
+.ft-player-time,
+.ft-player-total { font-family: var(--font-mono); font-size: 12px; letter-spacing: -.02em; }
+.ft-player-total { color: #8d8a82; }
+
+.ft-player-list { max-height: 176px; overflow-y: auto; border-top: 1px solid #e2dfd5; }
+
+.ft-player-row {
+  position: relative; padding: 8px 14px 10px;
+  border-bottom: 1px solid #e5e2d8;
+}
+.ft-player-row.is-active { background: #e5e2d8; }
+
+.ft-player-rowdate {
+  font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: #6d6a63;
+}
+.ft-player-rowdur {
+  position: absolute; right: 14px; top: 8px;
+  font-family: var(--font-mono); font-size: 12px; color: #8d8a82;
+}
+.ft-player-rowtitle { display: flex; align-items: baseline; gap: 7px; margin-top: 3px; padding-right: 70px; }
+.ft-player-rowtitle a { color: #1c3f6e; font-size: 14px; line-height: 1.3; text-decoration: none; }
+.ft-player-rowtitle a:hover { text-decoration: underline; }
+.ft-player-rowplay {
+  flex: 0 0 13px; width: 13px; height: 13px;
+  border: 1px solid #2f2a26; border-radius: 2px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #2f2a26; align-self: center;
+}
+.ft-player-rowplay svg { width: 6px; height: 7px; }
+
+/* ------------------------------------------------------- parody asterisk */
+/* Small marker beside the wordmark. Reveals the disclaimer on hover or
+   keyboard focus, so a suspicious reader can confirm what they are looking at
+   without the joke announcing itself. */
+
+.ft-star {
+  position: relative;
+  display: inline-block;
+  margin-left: 3px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1;
+  color: var(--color-ft-grey);
+  cursor: help;
+  transition: color .2s ease;
+}
+.ft-star:hover,
+.ft-star:focus-visible { color: var(--color-ft-orange); outline: none; }
+
+.ft-star-tip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-3px);
+  width: max-content;
+  max-width: 240px;
+  padding: 7px 10px;
+  background: var(--color-ft-charcoal);
+  color: var(--color-ft-white);
+  font-size: 13px;
+  line-height: 1.35;
+  border-radius: 3px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 40;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.ft-star:hover .ft-star-tip,
+.ft-star:focus-visible .ft-star-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
