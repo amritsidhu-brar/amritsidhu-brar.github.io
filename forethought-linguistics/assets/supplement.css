@@ -228,8 +228,11 @@
   line-height: 1;
   color: var(--color-ft-charcoal);
   margin: 0 calc(var(--logo-w) * 0.012);
-  /* the glyph sits high in its em box; drop it onto the lettering's cap line */
-  margin-top: 0.30em;
+  /* Aligns the top of the asterisk's ink with the cap line of the F. Anchored
+     to the top of the logo rather than centred, so the offset applies in full
+     (a margin on a centred flex item only moves it by half). */
+  align-self: flex-start;
+  margin-top: 0.008em;
   user-select: none;
 }
 
