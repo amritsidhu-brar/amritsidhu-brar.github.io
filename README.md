@@ -4,7 +4,7 @@ Personal site for Amrit Sidhu-Brar. Plain HTML and CSS, no build step, served by
 GitHub Pages at [amritsidhubrar.me.uk](https://amritsidhubrar.me.uk).
 
 Migrated off WordPress / SiteGround in August 2026. Website text written
-entirely by Amrit. DOcumentation and code written and maintainted entirely 
+entirely by Amrit. Documentation and code written and maintainted entirely 
 by Claude on Amrit's instructions.
 
 ## Layout
