@@ -266,3 +266,11 @@
   transform: translateY(0);
 }
 .ft-logo:focus-visible { outline: none; }
+
+/* Hero card heights.
+   Forethought's bundle only ships the --h values their own site happens to
+   use, per breakpoint variant. Raising the hero needs the new variant adding
+   here, or the class matches no rule, the card silently falls back to the sm
+   height, and the text spills out of it. build/checkcls.py catches this. */
+@media (min-width: 48rem) { [class~="md:[--h:14]"] { --h: 14; } }
+@media (min-width: 64rem) { [class~="lg:[--h:13]"] { --h: 13; } }
